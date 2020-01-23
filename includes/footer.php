@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!-- Sidebar -->
 					<section id="sidebar">
 
@@ -5,16 +8,15 @@
 							<section id="intro">
 <!--								<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>-->
 								<header>
+                                    <?php if(isset($db_msg))echo "IP = ". $ip . "<br>" . $db_msg; ?>
 									<h2>Future Imperfect</h2>
 									<p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
 								</header>
 							</section>
 
-						<!-- Mini Posts -->
-							<section>
+							<!--<section>
 								<div class="mini-posts">
 
-									<!-- Mini Post -->
 										<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Vitae sed condimentum</a></h3>
@@ -24,7 +26,6 @@
 											<a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
 										</article>
 
-									<!-- Mini Post -->
 										<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Rutrum neque accumsan</a></h3>
@@ -34,7 +35,6 @@
 											<a href="single.html" class="image"><img src="images/pic05.jpg" alt="" /></a>
 										</article>
 
-									<!-- Mini Post -->
 										<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Odio congue mattis</a></h3>
@@ -44,8 +44,7 @@
 											<a href="single.html" class="image"><img src="images/pic06.jpg" alt="" /></a>
 										</article>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
+                                    <article class="mini-post">
 											<header>
 												<h3><a href="single.html">Enim nisl veroeros</a></h3>
 												<time class="published" datetime="2015-10-17">October 1, 2015</time>
@@ -57,7 +56,7 @@
 								</div>
 							</section>
 
-						<!-- Posts List -->
+
 							<section>
 								<ul class="posts">
 									<li>
@@ -106,7 +105,7 @@
 										</article>
 									</li>
 								</ul>
-							</section>
+							</section>-->
 
 						<!-- About -->
 							<section class="blurb">
@@ -140,5 +139,10 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+<!--        bootstrap source -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	</body>
 </html>
