@@ -77,10 +77,10 @@ function save_new_user($fname, $sname, $uname, $email, $pswd){
 //        var_dump($res2);
         if($res2) {
             ##get user profile info
-            $profile_query = "select * from ".USER_DB.".profile where user_id = ".$user_id;
+            echo $profile_query = "select * from ".USER_DB.".profile where user_id = ".$user_id;
             $profile_res = userQuery($profile_query);
             while ($row = mysqli_fetch_assoc($profile_res)) {
-                $name = $row['firstname'] . ' ' . $row['lastname'];
+                echo $name = $row['firstname'] . ' ' . $row['lastname'];
             }
             if(send_new_user_email($email, $name, $uname, $token)){
                 echo "<script>alert('check inbox')</script>";
