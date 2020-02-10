@@ -88,7 +88,11 @@ function save_new_user($fname, $sname, $uname, $email, $pswd){
                 echo "<script>alert('mailing fail')</script>";
             }
 //            var_dump($profile_res);
+        }else{
+            echo "error creating profile";
         }
+    }else{
+        echo "error creating user account";
     }
 
 
