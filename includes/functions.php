@@ -74,7 +74,7 @@ function save_new_user($fname, $sname, $uname, $email, $pswd){
         }
         $query2 = "insert into ".USER_DB.".profile (user_id, firstname, lastname) values ('$user_id','$fname','$sname')";
         $res2 = userQuery($query2);
-        var_dump($res2);
+//        var_dump($res2);
         if($res2) {
             ##get user profile info
             $profile_query = "select * from ".USER_DB.".profile where user_id = ".$user_id;
