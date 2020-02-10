@@ -116,7 +116,7 @@ function send_new_user_email($email, $fname, $uname, $token){
     $mail->Body    = '
     Hi '.$fname.',
     <br><br>
-    You have received this email because you have signed up to the website <a href="https://www.jonjdigital.com">JonJDigital.com</a>.
+    You have received this email because you have signed up to the website <a href="https://www.jonjdigital.test">JonJDigital.com</a>.
     <br><br>
     Please follow this link to activate your account:
     <br>
