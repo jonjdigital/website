@@ -81,7 +81,7 @@ if(($maintenance ==1)){
 								<ul class="actions stacked">
 									<li><a href="/user/create.php" class="button large fit">Register</a></li>
 								</ul>
-                                <?php if($ip = "127.0.0.1"){?>
+                                <?php if($ip == "127.0.0.1"){?>
 								<ul class="actions stacked">
 									<li><a href="/session_debugging.php" class="button large fit">Session Details</a></li>
 								</ul>
