@@ -77,22 +77,14 @@ function save_new_user($fname, $sname, $uname, $email, $pswd){
 //        var_dump($res2);
         if($res2) {
             ##get user profile info
-            echo $profile_query = "select * from ".USER_DB.".profile where user_id = ".$user_id;
+            $profile_query = "select * from ".USER_DB.".profile where user_id = ".$user_id;
             $profile_res = userQuery($profile_query);
             while ($row = mysqli_fetch_assoc($profile_res)) {
-                echo $name = $row['firstname'] . ' ' . $row['lastname'];
+                $name = $row['firstname'] . ' ' . $row['lastname'];
             }
-            if(send_new_user_email($email, $name, $uname, $token)){
-                echo "<script>alert('check inbox')</script>";
-            }else{
-                echo "<script>alert('mailing fail')</script>";
-            }
+            send_new_user_email($email, $name, $uname, $token);
 //            var_dump($profile_res);
-        }else{
-            echo "error creating profile";
         }
-    }else{
-        echo "error creating user account";
     }
 
 
@@ -100,7 +92,6 @@ function save_new_user($fname, $sname, $uname, $email, $pswd){
 
 /**
  * Mail Functions
- * @throws Exception
  */
 
 function send_new_user_email($email, $fname, $uname, $token){
@@ -165,11 +156,7 @@ function send_new_user_email($email, $fname, $uname, $token){
     System Developer and Admin
     ';
 
-    if($mail->send()){
-        return true;
-    }else{
-        return false;
-    }
+    $mail->send();
 }
 
 

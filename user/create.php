@@ -5,7 +5,6 @@ $usernameCheck = null;
 if(isset($_POST['submit'])){
     if(checkEmail($_POST['email'])){
         if(checkUsername($_POST['uname'])){
-            echo "making user";
             save_new_user($_POST['fname'], $_POST['sname'], $_POST['uname'], $_POST['email'], $_POST['pswd']);
             echo "<p style='color:darkgreen;text-align: center; font-weight:bold'>Account created Successfully. Please check your inbox for an activation email</p>";
         }else{
