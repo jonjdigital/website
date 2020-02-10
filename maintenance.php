@@ -1,5 +1,10 @@
 <?php
 include "includes/header.php";
+
+$value = getMaintVal();
+if($value === 0){
+    header("Location: index.php");
+}
 ?>
 
     <h1><i class="fas fa-tools" style="font-size: 60px; text-align: center"></i>THIS SITE IS CURRENTLY UNDER MAINTENANCE!<i class="fas fa-tools" style="font-size: 60px; text-align: center"></i></h1>

@@ -34,11 +34,11 @@ function userQuery($query){
 ##get current system maintenance config value
 function getMaintVal(){
     global $sys_con;
-    $maintQuery = "select 'maintenance' from ".SYST_DB.".system_maintenance";
+    $maintQuery = "select * from ".SYST_DB.".system_configs where config = 'maintenance'";
     $res = mysqli_query($sys_con, $maintQuery);
     if($res){
         while($row = mysqli_fetch_assoc($res)){
-            return $row['maintenance'];
+            return $row['value'];
         }
     }else{
         return mysqli_error($sys_con);
