@@ -7,7 +7,8 @@ include $_SERVER['DOCUMENT_ROOT']."/includes/functions.php";
 ###check maintenance config value if 1 show maintenance page on live. if 0 show normal###
 $maintenance = getMaintVal();
 if(($maintenance =1)&&$_SERVER['REQUEST_URI']!="/maintenance.php"){
-    $location = $_SERVER['HTTP_HOST']."/maintenance.php";
+    header("Location: /maintenance.php");
+    /*$location = $_SERVER['HTTP_HOST']."/maintenance.php";
     // create a new cURL resource
     $ch = curl_init();
 
@@ -19,7 +20,7 @@ if(($maintenance =1)&&$_SERVER['REQUEST_URI']!="/maintenance.php"){
     curl_exec($ch);
 
 // close cURL resource, and free up system resources
-    curl_close($ch);
+    curl_close($ch);*/
 }
 ?>
 <!DOCTYPE HTML>
