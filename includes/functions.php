@@ -37,7 +37,9 @@ function getMaintVal(){
     $maintQuery = "select 'maintenance' from ".SYST_DB.".system_maintenance";
     $res = mysqli_query($sys_con, $maintQuery);
     if($res){
-        return $res['maintenance'];
+        while($row = mysqli_fetch_assoc($res)){
+            return $row['maintenance'];
+        }
     }else{
         return mysqli_error($sys_con);
     }

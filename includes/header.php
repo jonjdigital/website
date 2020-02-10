@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT']."/includes/functions.php";
 
 ###check maintenance config value if 1 show maintenance page on live. if 0 show normal###
 $maintenance = getMaintVal();
-if(($maintenance ==1) && ($ip != "127.0.0.1")){
+if(($maintenance ==1)){
     header($_SERVER['HTTP_ORIGIN']."/maintenance.php");
 }
 ?>
