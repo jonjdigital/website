@@ -82,7 +82,11 @@ function save_new_user($fname, $sname, $uname, $email, $pswd){
             while ($row = mysqli_fetch_assoc($profile_res)) {
                 $name = $row['firstname'] . ' ' . $row['lastname'];
             }
-            send_new_user_email($email, $name, $uname, $token);
+            if(send_new_user_email($email, $name, $uname, $token)){
+                echo "<script>alert('check inbox')</script>";
+            }else{
+                echo "<script>alert('mailing fail')</script>";
+            }
 //            var_dump($profile_res);
         }
     }
