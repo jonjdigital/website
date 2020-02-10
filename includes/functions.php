@@ -96,6 +96,7 @@ function save_new_user($fname, $sname, $uname, $email, $pswd){
 
 /**
  * Mail Functions
+ * @throws Exception
  */
 
 function send_new_user_email($email, $fname, $uname, $token){
@@ -160,7 +161,11 @@ function send_new_user_email($email, $fname, $uname, $token){
     System Developer and Admin
     ';
 
-    $mail->send();
+    if($mail->send()){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 
