@@ -1,5 +1,14 @@
 <?php
-include "includes/db.php";
+include $_SERVER['DOCUMENT_ROOT']."/includes/db.php";
+include $_SERVER['DOCUMENT_ROOT']."/includes/constants.php";
+include $_SERVER['DOCUMENT_ROOT']."/includes/functions.php";
+//var_dump($user_con);
+
+###check maintenance config value if 1 show maintenance page on live. if 0 show normal###
+$maintenance = getMaintVal();
+if(($maintenance ==1) && ($ip != "127.0.0.1")){
+    header($_SERVER['HTTP_ORIGIN']."/maintenance.php");
+}
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -12,7 +21,7 @@ include "includes/db.php";
 		<title>JonJDigital - Official Site</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
 
 
 
@@ -24,11 +33,11 @@ include "includes/db.php";
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="/">JonJDigital</a></h1>
+<!--						<h1><a href="/">JonJDigital</a></h1>-->
 						<nav class="links">
 							<ul>
                                                             <li><a href="/">Home</a></li>
-								<!--<li><a href="#">Ipsum</a></li>
+<!--								<li><a href="#">Ipsum</a></li>
 								<li><a href="#">Feugiat</a></li>
 								<li><a href="#">Tempus</a></li>
 								<li><a href="#">Adipiscing</a></li>-->
@@ -61,14 +70,22 @@ include "includes/db.php";
 
 						<!-- Links -->
 							<section>
-								<?php include "includes/navLinks.php"; ?>
+								<?php include $_SERVER['DOCUMENT_ROOT']."/includes/navLinks.php"; ?>
 							</section>
 
 						<!-- Actions -->
 							<section>
 								<ul class="actions stacked">
-									<li><a href="#" class="button large fit">Log In</a></li>
+									<li><a href="/login.php" class="button large fit">Log In</a></li>
 								</ul>
+								<ul class="actions stacked">
+									<li><a href="/user/create.php" class="button large fit">Register</a></li>
+								</ul>
+                                <?php if($ip = "127.0.0.1"){?>
+								<ul class="actions stacked">
+									<li><a href="/session_debugging.php" class="button large fit">Session Details</a></li>
+								</ul>
+                                <?php } ?>
 							</section>
 
 					</section>

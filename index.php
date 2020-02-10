@@ -398,8 +398,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								<li><a href="#" class="button large next">Next Page</a></li>
 							</ul>
 
-					</div>
-
 <?php
 include "includes/footer.php";
 ?>
