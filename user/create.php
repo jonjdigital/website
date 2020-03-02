@@ -28,7 +28,6 @@ if(isset($_POST['submit'])){
         </div>
         <div id="form-uname">
             <label for="uname">Username</label>
-
             <input type="text" id="uname" name="uname" required <?php if(isset($_POST['uname'])) echo "value='".$_POST['uname']."'"?>><?php if(!empty($usernameCheck))echo $usernameCheck;?>
         </div>
         <div id="form-fname">
@@ -48,8 +47,23 @@ if(isset($_POST['submit'])){
             <input type="password" id="cpswd" name="cpswd" required>
         </div>
         <br>
-        <input type="submit" value="Register" name="submit" style="width: 100%">
+        <div id="form-priv-policy">
+            <input type="checkbox" id="privacy_policy" name="privacy_policy" style="display: block">
+            <label for="privacy_policy"> I Agree that i have read and understood the <a target="_blank" href="../compliance/privacy_policy.php">Privacy Policy</a> provided</label>
+
+        </div>
+<!--        <input type="checkbox" id="privacy_policy" style="display: inline-block"/>I Agree that i have read through and understood the attached Privacy Policy.-->
+        <br>
+        <input type="submit" value="Register" name="submit" id="submit_button" style="width: 100%" disabled>
     </form>
 <?php
 include "../includes/footer.php";
 ?>
+
+<script>
+    var checker = document.getElementById('privacy_policy');
+    var sendbtn = document.getElementById('submit_button');
+    checker.onchange = function() {
+        sendbtn.disabled = !this.checked;
+    };
+</script>

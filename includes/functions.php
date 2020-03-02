@@ -31,6 +31,17 @@ function userQuery($query){
     }
 }
 
+function webQuery($query){
+    global $web_con;
+    $res = mysqli_query($web_con, $query);
+//    var_dump($res);
+    if($res){
+        return $res;
+    }else{
+        return mysqli_error($web_con);
+    }
+}
+
 ##get current system maintenance config value
 function getMaintVal(){
     global $sys_con;
@@ -48,6 +59,12 @@ function getMaintVal(){
 function escapeString($str){
     global $user_con;
     return mysqli_real_escape_string($user_con, $str);
+}
+
+function debug($var){
+    echo "<pre>";
+    var_dump($var);
+    echo "</pre>";
 }
 
 ##create a new user
@@ -178,5 +195,27 @@ function checkUsername($username){
         return false;
     }else{
         return true;
+    }
+}
+
+##user log in function##
+function login($id, $password){
+    #$id is username or email
+    $id = escapeString($id);
+    ##determine if entered id is username or email
+    $first_char = $id[0];
+    if($first_char != "@"){
+        $user_query = "select * from ".USER_DB.".user where email = '".$id."'";
+    }else{
+        $uname = substr($id,1);
+        var_dump($uname);
+        $user_query = "select * from ".USER_DB.".user where username = '".$uname."'";
+    }
+
+    var_dump($user_query);
+    $result = userQuery($user_query);
+
+    while($row = mysqli_fetch_assoc($result)){
+        var_dump($row['user_id']);
     }
 }

@@ -10,8 +10,8 @@
 <!--								<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>-->
 								<header>
                                     <?php if(isset($db_msg))echo "IP = ". $ip . "<br>" . $db_msg; ?>
-									<h2>Future Imperfect</h2>
-									<p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+									<h2 style="text-align: center">JonJDigital</h2>
+                                        <p style="text-align: center">JUST ANOTHER DIGITAL MEDIA COMMUNITY</p>
 								</header>
 							</section>
 
@@ -120,11 +120,11 @@
 						<!-- Footer -->
 							<section id="footer">
 								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
-									<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+									<li><a href="https://twitter.com/jamesjon1300" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.facebook.com/jonjdigital" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.instagram.com/JonJDigital/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+<!--									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>-->
+									<li><a href="mailto:jon.james@jonjdigital.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 								</ul>
 								<p class="copyright">&copy; JonJDigital 2020. Design: <a href="http://html5up.net">HTML5 UP</a>.</p>
 							</section>

@@ -9,8 +9,8 @@ const ACC_MODERATOR = 3;
 
 ##mail constants##
 const HOST = "smtp.office365.com";
-const USERNAME = "support@jonjdigital.com";
-const PASSWORD = "J0nJD!g1t@l";
+const USERNAME = "help@jonjdigital.com";
+const PASSWORD = "J0nJD1g1t@l";
 const PORT = 587;
 
 ##databse names##

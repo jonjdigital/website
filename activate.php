@@ -42,7 +42,7 @@ if($result_msg == 0){
     echo "
     <h3 style='text-align: center'>There has been an error when activating this account. Please contact the following email for assistance
     <br><br><br><br>
-    <a href='mailto:support@jonjdigital.com'>support@jonjdigital.com</a>
+    <a href='mailto:".USERNAME.">'>".USERNAME."</a>
     <br><br><br><br>
     Sorry for any inconvenience.
     <br><br>
@@ -68,7 +68,7 @@ if($result_msg == 0){
     <br><br>
     If you are having any issue logging in then please contact me via email to reset your password.
     <br><br>
-    <a href='mailto:support@jonjdigital.com'>support@jonjdigital.com</a>
+    <a href='mailto:".USERNAME.">'>".USERNAME."</a>
     <br><br>
     Kind Regards,<br>
     Jon James</h3>
@@ -78,7 +78,7 @@ if($result_msg == 0){
     <br><br>
     If you believe this is in error, then please contact me via email for help in recovering your account.
     <br><br>
-    <a href='mailto:support@jonjdigital.com'>support@jonjdigital.com</a>
+    <a href='mailto:".USERNAME.">'>".USERNAME."</a>
     <br><br>
     Kind Regards,<br>
     Jon James</h3>
