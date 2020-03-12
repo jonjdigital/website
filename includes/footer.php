@@ -112,9 +112,9 @@
 							<section class="blurb">
 								<h2>About</h2>
 								<p>JonJDigital is a hobby network with the aim of bringing digital communities togther to share their work with each other. This site is developed by hand, by one developer, and features are suggested by the communities.</p>
-								<ul class="actions">
+								<!--<ul class="actions">
 									<li><a href="#" class="button">Learn More</a></li>
-								</ul>
+								</ul>-->
 							</section>
 
 						<!-- Footer -->

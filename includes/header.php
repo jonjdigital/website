@@ -22,7 +22,7 @@ if((($maintenance ==1)&&($_SERVER['REQUEST_URI']!="/maintenance.php"))){
 // close cURL resource, and free up system resources
     curl_close($ch);*/
 }
-
+session_start();
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -89,13 +89,19 @@ if((($maintenance ==1)&&($_SERVER['REQUEST_URI']!="/maintenance.php"))){
 
 						<!-- Actions -->
 							<section>
-								<ul class="actions stacked">
-									<li><a href="/login.php" class="button large fit">Log In</a></li>
-								</ul>
-								<ul class="actions stacked">
-									<li><a href="/user/create.php" class="button large fit">Register</a></li>
-								</ul>
-                                <?php if($ip == "127.0.0.1"){?>
+                                <?php if(!isset($_SESSION['user_id'])){?>
+                                    <ul class="actions stacked">
+                                        <li><a href="/login.php" class="button large fit">Log In</a></li>
+                                    </ul>
+                                    <ul class="actions stacked">
+                                        <li><a href="/user/create.php" class="button large fit">Register</a></li>
+                                    </ul>
+                                <?php }else{?>
+                                    <ul class="actions stacked">
+                                        <li><a href="/logout.php" class="button large fit">Log Out</a></li>
+                                    </ul>
+                                <?php }
+                                if($ip == "127.0.0.1"){?>
 								<ul class="actions stacked">
 									<li><a href="/session_debugging.php" class="button large fit">Session Details</a></li>
 								</ul>

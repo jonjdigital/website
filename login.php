@@ -1,7 +1,13 @@
 <?php
 include "includes/header.php";
+$error = null;
 if(isset($_POST['submit'])){
-    login($_POST['uname'],$_POST['pswd']);
+    $login = login($_POST['uname'],$_POST['pswd']);
+    if($login){
+        header("Location: /");
+    }else{
+        $error = "<p style='color: red'>Password does not match System. Please try again</p>";
+    }
 }
 ?>
 <div id="icon" style="font-size: 30px; text-align: center">
@@ -16,6 +22,7 @@ if(isset($_POST['submit'])){
             <input type="text" id="uname" name="uname" required <?php if(isset($_POST['uname'])) echo "value='".$_POST['uname']."'"?>><?php if(!empty($usernameCheck))echo $usernameCheck;?>
         </div>
         <br>
+        <?php if($error != null)echo $error;?>
         <div id="form-pswd">
             <label for="pswd">Password</label>
             <input type="password" id="pswd" name="pswd" required>

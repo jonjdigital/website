@@ -70,10 +70,17 @@ function debug($var){
 ##create a new user
 function save_new_user($fname, $sname, $uname, $email, $pswd){
     ###generate hashed password
-    $hash = crypt($pswd, '$6$rounds=1000$J0nJD1g1t4lS1t3s$');
-
+//    $hash = crypt($pswd, '$6$rounds=1000$J0nJD1g1t4lS1t3s$');
+    $hash = password_hash($pswd, 1,["J0nJD1g1t@l","6"]);
     ###generate random token string
     $token = tokenGen();
+
+    ###ESCAPE THE STRINGS FOR SECURITY
+    $hash = escapeString($hash);
+    $email = escapeString($email);
+    $fname = escapeString($fname);
+    $sname = escapeString($sname);
+    $uname = escapeString($uname);
 
     ###save the user details to the user database
     $query = "insert into ".USER_DB.".user (username, email, password_hash, validation_token, reset_token) values ('$uname','$email','$hash','$token', null)";
@@ -208,14 +215,45 @@ function login($id, $password){
         $user_query = "select * from ".USER_DB.".user where email = '".$id."'";
     }else{
         $uname = substr($id,1);
-        var_dump($uname);
+        //var_dump($uname);
         $user_query = "select * from ".USER_DB.".user where username = '".$uname."'";
     }
 
-    var_dump($user_query);
     $result = userQuery($user_query);
+//    print_r($result);
 
     while($row = mysqli_fetch_assoc($result)){
-        var_dump($row['user_id']);
+        //var_dump($row['user_id']);
+        $hash = $row['password_hash'];
+        $verify = password_verify($password,$hash);
+
+        if($verify){
+            $user_id = $row['user_id'];
+            echo $profile_info = "select * from ".USER_DB.".profile where user_id = '".$user_id."'";
+            $profile_res = userQuery($profile_info);
+            $profile = mysqli_fetch_assoc($profile_res);
+            //print_r($profile);
+
+            $fname = $profile['firstname'];
+            $sname = $profile['lastname'];
+            $uname = $row['username'];
+            $user_id = $row['user_id'];
+            $_SESSION['user_id'] = $user_id;
+            $_SESSION['fname'] = $fname;
+            $_SESSION['sname'] = $sname;
+            $_SESSION['uname'] = $uname;
+            $_SESSION['user_id'] = $user_id;
+//            var_dump($_SESSION);
+            //echo "<script>alert('Logged In')</script>";
+            return true;
+        }else{
+            return false;
+        }
     }
+}
+
+function logout(){
+    session_destroy();
+    header("Location: /");
+//    header($_SERVER['HTTP_HOST']);
 }
