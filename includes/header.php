@@ -36,8 +36,7 @@ session_start();
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
-
-
+        <link rel="icon" type="image/png" href="../icon.png">
 
 	</head>
 	<body class="is-preload">
@@ -65,6 +64,7 @@ session_start();
 										<input type="text" name="query" placeholder="Search" />
 									</form>
 								</li>-->
+
 								<li class="menu">
 									<a class="fa-bars" href="#menu">Menu</a>
 								</li>
@@ -74,13 +74,12 @@ session_start();
 
 				<!-- Menu -->
 					<section id="menu">
-                                            <hr>
-<!--						 Search 
+                        <img src="../icon.png" alt="Logo" style="width:75%">
 							<section>
-								<form class="search" method="get" action="#">
-									<input type="text" name="query" placeholder="Search" />
-								</form>
-							</section>-->
+								<?php
+                                if(isset($_SESSION['uname'])){echo "Username: " . $_SESSION['uname'];};
+                                ?>
+							</section>
 
 						<!-- Links -->
 							<section>
