@@ -49,8 +49,13 @@ session_start();
 <!--						<h1><a href="/">JonJDigital</a></h1>-->
 						<nav class="links">
 							<ul>
-                                                            <li><a href="/">Home</a></li>
-<!--								<li><a href="#">Ipsum</a></li>
+                                <li><a href="/">Home</a></li>
+                                <?php
+                                if(in_array("Content Creator",$_SESSION['roles'])){
+                                    echo "<li><a href='/post/dashboard.php'>Post Dashboard</a></li>";
+                                }
+                                ?>
+<!--							<li><a href="#">Ipsum</a></li>
 								<li><a href="#">Feugiat</a></li>
 								<li><a href="#">Tempus</a></li>
 								<li><a href="#">Adipiscing</a></li>-->
@@ -77,7 +82,14 @@ session_start();
                         <img src="../icon.png" alt="Logo" style="width:75%">
 							<section>
 								<?php
-                                if(isset($_SESSION['uname'])){echo "Username: " . $_SESSION['uname'];};
+                                if(isset($_SESSION['uname'])){
+                                    echo "<p>Username: " . $_SESSION['uname']."</p>";
+                                    echo "<p>Roles:<ul>";
+                                        foreach($_SESSION['roles'] as $role){
+                                            echo "<li>".$role."</li>";
+                                        }
+                                    echo "</ul>";
+                                }
                                 ?>
 							</section>
 

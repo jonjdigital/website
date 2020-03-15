@@ -245,6 +245,7 @@ function login($id, $password){
             $_SESSION['user_id'] = $user_id;
 //            var_dump($_SESSION);
             //echo "<script>alert('Logged In')</script>";
+            checkAccess($user_id);
             return true;
         }else{
             return false;
@@ -256,4 +257,51 @@ function logout(){
     session_destroy();
     header("Location: /");
 //    header($_SERVER['HTTP_HOST']);
+}
+
+function checkAccess($id){
+    $roles = [];
+    /**
+     * ##access right constants##
+    const ACC_OWNER = 0;
+    const ACC_PUBLIC = 1;
+    const ACC_ADMIN = 2;
+    const ACC_CONTENT_CREATOR = 3;
+    const ACC_MODERATOR = 4;
+     */
+    $acc_query = "select * from ".USER_DB.".access_rights where user_id = '".$id."'";
+    $acc_res = userQuery($acc_query);
+    while($row = mysqli_fetch_assoc($acc_res)){
+        if ($row['access_right_id'] == ACC_ADMIN) {
+            $roles[] = 'Admin';
+        }else if ($row['access_right_id'] == ACC_PUBLIC) {
+            $roles[] = 'Public';
+        }else if ($row['access_right_id'] == ACC_OWNER) {
+            $roles[] = 'Owner';
+        }else if ($row['access_right_id'] == ACC_CONTENT_CREATOR) {
+            $roles[] = 'Content Creator';
+        }else if ($row['access_right_id'] == ACC_MODERATOR) {
+            $roles[] = 'Moderator';
+        }
+    }
+    $_SESSION['roles'] = $roles;
+}
+
+function getAllUserInfo($id){
+    $userInfo = "Select user_id, username, email, status, acc_activated from ".USER_DB.".user where user_id = $id";
+    $userRes = userQuery($userInfo);
+    $profileInfo = "Select * from ".USER_DB.".profile where user_id = $id";
+    $profileRes = userQuery($profileInfo);
+    while($row = mysqli_fetch_assoc($userRes)){
+        while($row2 = mysqli_fetch_assoc($profileRes)){
+            return array_merge($row, $row2);
+        }
+    }
+}
+
+
+function getUsersPosts($id,$limit){
+    $postQuery = "select * from ".SITE_DB.".posts where user_id = $id limit";
+    $postRes = webQuery($postQuery);
+    return $postRes;
 }

@@ -24,6 +24,16 @@ if($user_info) {
             if (!$status_upd) {
                 echo "Status Update Failure: " . mysqli_error($user_con);
             }
+            ###get user id from token
+            $id_query = "select * from ".USER_DB.".user where token = '".$token."'";
+            $id_res = userQuery($id_query);
+            while($row = mysqli_fetch_assoc($id_res)){
+                $id = $row['user_id'];
+                $acc_right_query =  "insert into ".USER_DB.".access_rights ('user_id','access_right_id') values ('$id',1)";
+                if(!userQuery($acc_right_query)) {
+                    echo mysqli_error($user_con);
+                }
+            }
             $result_msg = 1; ###Acc now activated
         } else if ($status == 1) {
             $result_msg = 2; ###Acc already activated
