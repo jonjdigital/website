@@ -80,18 +80,19 @@ session_start();
 				<!-- Menu -->
 					<section id="menu">
                         <img src="../icon.png" alt="Logo" style="width:75%">
-							<section>
+
 								<?php
                                 if(isset($_SESSION['uname'])){
+                                    echo "<section>";
                                     echo "<p>Username: " . $_SESSION['uname']."</p>";
                                     echo "<p>Roles:<ul>";
                                         foreach($_SESSION['roles'] as $role){
                                             echo "<li>".$role."</li>";
                                         }
                                     echo "</ul>";
+                                    echo "</section>";
                                 }
                                 ?>
-							</section>
 
 						<!-- Links -->
 							<section>

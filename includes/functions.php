@@ -294,7 +294,7 @@ function getAllUserInfo($id){
     $profileRes = userQuery($profileInfo);
     while($row = mysqli_fetch_assoc($userRes)){
         while($row2 = mysqli_fetch_assoc($profileRes)){
-            return array_merge($row, $row2);
+                        return array_merge($row, $row2);
         }
     }
 }

@@ -11,22 +11,24 @@
         ?>
 
        <?php
-       if(in_array("Content Creator",$_SESSION['roles'])){
-           echo "<li>";
-           echo "<a href='/post/dashboard.php'>";
-           echo "<h3>Post Dashboard</h3>";
-           echo "<p>Manage your posts and content through here</p>";
-           echo "</a>";
-           echo "</li>";
+       if(isset($_SESSION['user_id'])) {
+           if (in_array("Content Creator", $_SESSION['roles'])) {
+               echo "<li>";
+               echo "<a href='/post/dashboard.php'>";
+               echo "<h3>Post Dashboard</h3>";
+               echo "<p>Manage your posts and content through here</p>";
+               echo "</a>";
+               echo "</li>";
+           }
        }
        ?>
-        <!--<li>
+        <li>
             <a href="#">
                 <h3>Dolor sit amet</h3>
                 <p>Sed vitae justo condimentum</p>
             </a>
         </li>
-        <li>
+        <!--<li>
             <a href="#">
                 <h3>Feugiat veroeros</h3>
                 <p>Phasellus sed ultricies mi congue</p>

@@ -39,6 +39,9 @@ if($user_info) {
             $result_msg = 2; ###Acc already activated
         } else if(($status == 2)){
             $result_msg = 3; ###Acc disabled
+        } else if(($status == 3)){
+            $result_msg = 4; ###Acc deleted
+            $deleted_date = $row['delete_on'];
         }
     }
 
@@ -87,6 +90,20 @@ if($result_msg == 0){
     echo "<h3 style='text-align: center'>Your account has been disabled by an admin.
     <br><br>
     If you believe this is in error, then please contact me via email for help in recovering your account.
+    <br><br>
+    <a href='mailto:".USERNAME.">'>".USERNAME."</a>
+    <br><br>
+    Kind Regards,<br>
+    Jon James</h3>
+    ";
+}else if($result_msg == 4){
+    echo "<h3 style='text-align: center'>Your account has been Deleted.
+    <br><br>
+    Unforunately we have deleted all of your data regarding your public profile, and remaining data will be deleted within 6 moths of the below date.
+    <br><br>
+    ".date('D d M Y',$deleted_date)."
+    <br><br>
+    Sorry for any inconvenience.
     <br><br>
     <a href='mailto:".USERNAME.">'>".USERNAME."</a>
     <br><br>
