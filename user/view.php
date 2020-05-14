@@ -1,6 +1,6 @@
 <?php
 include "../includes/header.php";
-if($_SESSION['user_id'] !== $_GET['id']){
+if(($_SESSION['user_id'] !== $_GET['id'])&&(!in_array("Admin",$_SESSION['roles'])&&!in_array("Moderator",$_SESSION['roles'])&&!in_array("Owner",$_SESSION['roles']))){
     header("Location: /");
 }
 $info = getAllUserInfo($_GET['id']);
@@ -21,7 +21,7 @@ var_dump($info);
 <h3>Account Activated: <?php echo date('D d M Y', $info['acc_activated'])?></h3>
     <br><br>
 <div>
-    <button style="width: 33%">Edit</button> <button style="width: 33%">Delete Account</button> <button style="width: 33%">Disable Account</button>
+    <button style="width: 33%"><a href="update.php?id=<?php echo $_GET['id']?>">Edit</a></button> <button style="width: 33%">Delete Account</button> <button style="width: 33%">Disable Account</button>
 </div>
 <?php
 include "../includes/footer.php";
