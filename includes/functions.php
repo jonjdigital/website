@@ -183,6 +183,69 @@ function send_new_user_email($email, $fname, $uname, $token){
     $mail->send();
 }
 
+function change_email($info, $email){
+    $id = $info['user_id'];
+    $email = escapeString($email);
+    //update the user table with the new email, changing email_validated to 0
+    $update_user_sql = "update ".USER_DB.".user set email='$email', email_validated=0 where user_id = $id";
+    $res = userQuery($update_user_sql);
+    if(!$res){
+        echo "<script>alert($res)</script>";
+    };
+    $token = escapeString(tokenGen());
+    $insert_validation_sql = "insert into ".USER_DB.".email_verify ('user_id', 'token') values ('$id','$token')";
+    $res1 = userQuery($insert_validation_sql);
+    /*if(!$res1) {
+        header("Location: https://www.google.com");
+    };
+    return $insert_validation_sql;*/
+    header("Location: $insert_validation_sql");
+
+}
+
+function verify_email($email, $fname, $nemail, $verify_token)
+{
+    $link = $_SERVER['HTTP_ORIGIN'].'/user/validate.php?token='.$verify_token;
+    $mail = new PHPMailer(true);
+//    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+    $mail->isSMTP();                                            // Send using SMTP
+    $mail->Host = HOST;                    // Set the SMTP server to send through
+    $mail->SMTPAuth = true;                                   // Enable SMTP authentication
+    $mail->Username = USERNAME;                     // SMTP username
+    $mail->Password = PASSWORD;                               // SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+    $mail->Port = PORT;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setFrom(USERNAME, 'Support');
+    $mail->addAddress($email);     // Add a recipient
+    $mail->addAddress(USERNAME);
+
+    //email content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'Verify Email Change';
+    $mail->Body =
+        "Hi $fname,
+        <br><br>
+        You have requested a change in your email address.
+        <br><br>
+        To change your email to:
+        <br>
+        $nemail
+        <br><br>
+        Please follow this <a href=$link>link.</a>
+        <br><br>
+        If the above link doesnt work please copy and paste the below URL into your address bar at the top of your browser.
+        <br>
+        $link
+        <br><br><br>
+        If you believe this is in error, please contact an admin at <a href='mailto:help@jonjdigital.com'>help@jonjdigital.com</a>.
+        <br><br>
+        Kind Regards
+        <br><br>
+        Jon James";
+    $mail->send();
+}
 
 ###User creation functions###
 function checkEmail($email){
@@ -304,4 +367,12 @@ function getUsersPosts($id,$limit){
     $postQuery = "select * from ".SITE_DB.".posts where user_id = $id limit";
     $postRes = webQuery($postQuery);
     return $postRes;
+}
+
+function git_pull(){
+    $doc_root = $_SERVER['DOCUMENT_ROOT'];
+    //"git -C '/opt/lampp/htdocs/website' pull"
+    $command = "git -C '".$doc_root."' pull";
+    exec($command,$output);
+    return $output;
 }

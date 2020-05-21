@@ -19,7 +19,7 @@ if($user_info) {
 
     if (isset($status)) {
         if ($status == 0) { ##check if Acc is new
-            $stat_query = "update " . USER_DB . ".user set status = 1, acc_activated = " . time() . " where validation_token ='" . $token . "'";
+            $stat_query = "update " . USER_DB . ".user set status = 1, acc_activated = " . time() . ", email_validated = 1 where validation_token ='" . $token . "'";
             $status_upd = userQuery($stat_query);
             if (!$status_upd) {
                 echo "Status Update Failure: " . mysqli_error($user_con);
