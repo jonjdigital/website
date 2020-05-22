@@ -372,7 +372,7 @@ function getUsersPosts($id,$limit){
 function git_pull(){
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
     //"git -C '/opt/lampp/htdocs/website' pull"
-    $command = "git -C '".$doc_root."' pull";
+    $command = "cd ".$doc_root." && git pull";
 //    exec($command,$output);
 //    return $output;
     return shell_exec($command);
