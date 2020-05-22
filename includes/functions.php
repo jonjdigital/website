@@ -377,7 +377,7 @@ function git_pull(){
     } else {
         $command = "cd /opt/lampp/htdocs/website && git pull";
     }
-    exec($command,$output);
-    return $output;
-//    return shell_exec($command);
+//    exec($command,$output);
+//    return $output;
+    return shell_exec($command);
 }
