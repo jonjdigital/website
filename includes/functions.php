@@ -374,9 +374,8 @@ function git_pull(){
     $result = "";
     //"git -C '/opt/lampp/htdocs/website' pull"
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        $output = shell_exec("gitpull_win.sh");
+        return shell_exec("gitpull_win.sh");
     } else {
-        $output = shell_exec("gitpull_linux.sh");
+        return shell_exec("cd /opt/lampp/htdocs/website && sudo git pull");
     }
-    return $output;
 }
