@@ -10,7 +10,7 @@
 <!--								<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>-->
 								<header>
                                     <?php if(isset($db_msg))echo "IP = ". $ip . "<br>" . $db_msg; ?>
-									<h2 style="text-align: center">JonJDigital</h2>
+									<h2 style="text-align: center">JonJDigital TEST</h2>
                                         <p style="text-align: center">JUST ANOTHER DIGITAL MEDIA COMMUNITY</p>
 								</header>
 							</section>
