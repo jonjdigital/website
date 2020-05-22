@@ -375,7 +375,7 @@ function git_pull(){
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
         $command = "cd ".$doc_root." && git pull";
     } else {
-        $command = "cd '".$doc_root."' && git pull";
+        $command = "cd /opt/lampp/htdocs/website && git pull";
     }
     exec($command,$output);
     return $output;
