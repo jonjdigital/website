@@ -371,6 +371,7 @@ function getUsersPosts($id,$limit){
 
 function git_pull(){
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
+    $result = "";
     //"git -C '/opt/lampp/htdocs/website' pull"
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
         $command = "cd ".$doc_root." && git pull";
@@ -379,5 +380,6 @@ function git_pull(){
     }
 //    exec($command,$output);
 //    return $output;
-    return shell_exec($command);
+    shell_exec($command >> $result);
+    return $result
 }
