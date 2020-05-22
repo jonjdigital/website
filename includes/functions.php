@@ -380,6 +380,5 @@ function git_pull(){
     }
 //    exec($command,$output);
 //    return $output;
-    shell_exec($command >> $result);
-    return $result;
+    return system($command);
 }
