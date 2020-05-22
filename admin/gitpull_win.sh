@@ -1,0 +1,1 @@
+cd C:/xampp/htdocs/website && git pull
