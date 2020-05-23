@@ -11,8 +11,8 @@ if(array_key_exists("gitpull", $_POST)) {
 </form>
 <?php if(isset($output)){
     echo "<code>";
-    foreach($output as $line){
-        print($line."\n");
+    foreach($output as $line) {
+        echo $line . "\n";
     }
     echo "</code>";
 }?>
