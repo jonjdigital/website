@@ -369,13 +369,14 @@ function getUsersPosts($id,$limit){
     return $postRes;
 }
 
+function execPrint($command) {
+    $result = array();
+    exec($command, $result);
+    return $result;
+}
+
 function git_pull(){
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
-    $result = "";
-    //"git -C '/opt/lampp/htdocs/website' pull"
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        return shell_exec("gitpull_win.sh");
-    } else {
-        return shell_exec("cd /opt/lampp/htdocs/website && sudo git pull");
-    }
+    $command = "cd $doc_root && git pull";
+    return execPrint($command);
 }
