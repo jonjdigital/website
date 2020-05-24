@@ -385,7 +385,7 @@ function git_pull(){
 
 function ssh_git_pull(){
     $root = $_SERVER['DOCUMENT_ROOT'];
-    exec(`sudo cd $root && git pull`);
+    return exec(`sudo cd $root && git pull`);
     /*$connection = ssh2_connect(SERVER_IP);
     ssh2_auth_password($connection, 'root', SERVER_PASSWD);
 
