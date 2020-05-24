@@ -376,24 +376,19 @@ function execPrint($command) {
 }
 
 function git_pull(){
-    if($_SERVER['REMOTE_ADDR'] === SERVER_IP){
-        return ssh_git_pull();
+    if($_SERVER['REMOTE_ADDR'] == SERVER_IP){
+        return rem_git_pull();
     }else{
         return loc_git_pull();
     }
 }
 
-function ssh_git_pull(){
+function rem_git_pull(){
     $root = $_SERVER['DOCUMENT_ROOT'];
-    return exec(`sudo cd $root && git pull`);
-    /*$connection = ssh2_connect(SERVER_IP);
-    ssh2_auth_password($connection, 'root', SERVER_PASSWD);
-
-    return ssh2_exec($connection, "cd /opt/lampp/htdocs && git pull");*/
+    return exec("sudo cd $root && git pull");
 }
 
 function loc_git_pull(){
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
-    $command = "cd $doc_root && git pull";
-    return execPrint($command);
+    return execPrint("cd $doc_root && git pull");
 }
