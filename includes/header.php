@@ -51,8 +51,10 @@ session_start();
 							<ul>
                                 <li><a href="/">Home</a></li>
                                 <?php
-                                if(in_array("Content Creator",$_SESSION['roles'])){
-                                    echo "<li><a href='/post/dashboard.php'>Post Dashboard</a></li>";
+                                if(isset($_SESSION['uname'])) {
+                                    if (in_array("Content Creator", $_SESSION['roles'])) {
+                                        echo "<li><a href='/post/dashboard.php'>Post Dashboard</a></li>";
+                                    }
                                 }
                                 ?>
 <!--							<li><a href="#">Ipsum</a></li>

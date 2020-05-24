@@ -10,6 +10,7 @@ if(array_key_exists("gitpull", $_POST)) {
         <input type="submit" name="gitpull" class="button" value="Update Environment" />
 </form>
 <?php if(isset($output)){
+    var_dump($output);
     echo "<code>";
     foreach($output as $line) {
         echo $line . "\n";
