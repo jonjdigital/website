@@ -376,19 +376,7 @@ function execPrint($command) {
 }
 
 function git_pull(){
-    if($_SERVER['REMOTE_ADDR'] == SERVER_IP){
-        return rem_git_pull();
-    }else{
-        return loc_git_pull();
-    }
-}
-
-function rem_git_pull(){
-    $root = $_SERVER['DOCUMENT_ROOT'];
-    return exec("sudo cd $root && git pull");
-}
-
-function loc_git_pull(){
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
-    return execPrint("cd $doc_root && git pull");
+    $command = "cd $doc_root && git pull";
+    return execPrint($command);
 }
