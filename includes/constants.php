@@ -17,3 +17,7 @@ const PORT = 587;
 const USER_DB = "jonjmhev_users";
 const SITE_DB = "jonjmhev_website";
 const SYST_DB = "jonjmhev_system";
+
+##remote server info
+const SERVER_IP = "77.68.117.244";
+const SERVER_PASSWD = "%M*8194Qq0";
