@@ -384,10 +384,12 @@ function git_pull(){
 }
 
 function ssh_git_pull(){
-    $connection = ssh2_connect(SERVER_IP);
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    exec(`sudo cd $root && git pull`);
+    /*$connection = ssh2_connect(SERVER_IP);
     ssh2_auth_password($connection, 'root', SERVER_PASSWD);
 
-    return ssh2_exec($connection, "cd /opt/lampp/htdocs && git pull");
+    return ssh2_exec($connection, "cd /opt/lampp/htdocs && git pull");*/
 }
 
 function loc_git_pull(){
