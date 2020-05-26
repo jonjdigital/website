@@ -1,0 +1,12 @@
+# Deny access to filenames starting with dot(.)
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+Allow from 127.0.0.1
+</FilesMatch>
+
+<Files "interested.php">
+Order deny,allow
+Deny from all
+Allow from 127.0.0.1
+</Files>

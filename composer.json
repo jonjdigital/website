@@ -4,6 +4,5 @@
       "ext-mysqli": "*",
       "ext-mysql": "*",
       "ext-curl": "*",
-      "ext-ssh2": "*"
     }
 }

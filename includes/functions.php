@@ -193,13 +193,14 @@ function change_email($info, $email){
         echo "<script>alert($res)</script>";
     };
     $token = escapeString(tokenGen());
-    $insert_validation_sql = "insert into ".USER_DB.".email_verify ('user_id', 'token') values ('$id','$token')";
+    $insert_validation_sql = "insert into ".USER_DB.".email_verify user_id=$id, token=$token ";
     $res1 = userQuery($insert_validation_sql);
+    return $res1;
     /*if(!$res1) {
         header("Location: https://www.google.com");
     };
     return $insert_validation_sql;*/
-    header("Location: $insert_validation_sql");
+
 
 }
 
@@ -301,11 +302,15 @@ function login($id, $password){
             $sname = $profile['lastname'];
             $uname = $row['username'];
             $user_id = $row['user_id'];
-            $_SESSION['user_id'] = $user_id;
-            $_SESSION['fname'] = $fname;
+            setcookie('user_id',$user_id,time()+3600,['httponly'=> true]);
+            setcookie('fname', $fname,time()+3600,['httponly'=> true]);
+            setcookie('fname', $fname,time()+3600,['httponly'=> true]);
+            setcookie('uname', $uname,time()+3600,['httponly'=> true]);
+            setcookie('sname', $sname,time()+3600,['httponly'=> true]);
+/*            $_SESSION['fname'] = $fname;
             $_SESSION['sname'] = $sname;
             $_SESSION['uname'] = $uname;
-            $_SESSION['user_id'] = $user_id;
+            $_SESSION['user_id'] = $user_id;*/
 //            var_dump($_SESSION);
             //echo "<script>alert('Logged In')</script>";
             checkAccess($user_id);
@@ -318,6 +323,9 @@ function login($id, $password){
 
 function logout(){
     session_destroy();
+    foreach($_COOKIE as $key => $value){
+        setcookie($key, null, 0, '/',['httponly'=> true]);
+    }
     header("Location: /");
 //    header($_SERVER['HTTP_HOST']);
 }

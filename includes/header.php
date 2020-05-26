@@ -6,8 +6,8 @@ include $_SERVER['DOCUMENT_ROOT']."/includes/functions.php";
 
 ###check maintenance config value if 1 show maintenance page on live. if 0 show normal###
 $maintenance = getMaintVal();
-if((($maintenance ==1)&&($_SERVER['REQUEST_URI']!="/maintenance.php"))){
-    header("Location: /maintenance.php");
+if((($maintenance ==1)&&($_SERVER['REQUEST_URI']!="/interested.php"))){
+    header("Location: /interested.php");
     /*$location = $_SERVER['HTTP_HOST']."/maintenance.php";
     // create a new cURL resource
     $ch = curl_init();
@@ -51,7 +51,7 @@ session_start();
 							<ul>
                                 <li><a href="/">Home</a></li>
                                 <?php
-                                if(isset($_SESSION['uname'])) {
+                                if(isset($_COOKIE['uname'])) {
                                     if (in_array("Content Creator", $_SESSION['roles'])) {
                                         echo "<li><a href='/post/dashboard.php'>Post Dashboard</a></li>";
                                     }
@@ -84,9 +84,9 @@ session_start();
                         <img src="../icon.png" alt="Logo" style="width:75%">
 
 								<?php
-                                if(isset($_SESSION['uname'])){
+                                if(isset($_COOKIE['uname'])){
                                     echo "<section>";
-                                    echo "<p>Username: " . $_SESSION['uname']."</p>";
+                                    echo "<p>Username: " . $_COOKIE['uname']."</p>";
                                     echo "<p>Roles:<ul>";
                                         foreach($_SESSION['roles'] as $role){
                                             echo "<li>".$role."</li>";
@@ -103,7 +103,7 @@ session_start();
 
 						<!-- Actions -->
 							<section>
-                                <?php if(!isset($_SESSION['user_id'])){?>
+                                <?php if(!isset($_COOKIE['user_id'])){?>
                                     <ul class="actions stacked">
                                         <li><a href="/login.php" class="button large fit">Log In</a></li>
                                     </ul>

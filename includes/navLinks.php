@@ -1,8 +1,8 @@
 <ul class="links">
         <?php
-        if(isset($_SESSION['user_id'])){
+        if(isset($_COOKIE['user_id'])){
             echo "<li>";
-            echo "<a href='/user/view.php?id=".$_SESSION['user_id']."'>";
+            echo "<a href='/user/view.php?id=".$_COOKIE['user_id']."'>";
             echo "<h3>My Profile</h3>";
             echo "<p>View and Edit your profile here</p>";
             echo "</a>";
@@ -11,7 +11,7 @@
         ?>
 
        <?php
-       if(isset($_SESSION['user_id'])) {
+       if(isset($_COOKIE['user_id'])) {
            if (in_array("Content Creator", $_SESSION['roles'])) {
                echo "<li>";
                echo "<a href='/post/dashboard.php'>";

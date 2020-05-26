@@ -1,6 +1,6 @@
 <?php
 include "../includes/header.php";
-if(($_SESSION['user_id'] !== $_GET['id'])&&(!in_array("Admin",$_SESSION['roles'])&&!in_array("Owner",$_SESSION['roles']))){
+if(($_COOKIE['user_id'] !== $_GET['id'])&&(!in_array("Admin",$_SESSION['roles'])&&!in_array("Owner",$_SESSION['roles']))){
     header("Location: /");
 }
 $info = getAllUserInfo($_GET['id']);

@@ -10,7 +10,7 @@ $email_msg = null;
 $fname_msg = null;
 $sname_msg = null;
 
-if(($_SESSION['user_id'] !== $_GET['id'])&&(!in_array("Admin",$_SESSION['roles'])&&!in_array("Owner",$_SESSION['roles']))){
+if(($_COOKIE['user_id'] !== $_GET['id'])&&(!in_array("Admin",$_SESSION['roles'])&&!in_array("Owner",$_SESSION['roles']))){
     header("Location: /");
 }
 $info = getAllUserInfo($_GET['id']);
@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
 
     if($sub_forename != $info['firstname']){
         $sql = "update ".$user_db_name.".profile set firstname = '"
-            .$sub_forename."' where user_id = ".$_SESSION['user_id'];
+            .$sub_forename."' where user_id = ".$_COOKIE['user_id'];
         userQuery($sql);
         $fname_msg = "<p style='text-align: center; color: darkgreen'>First name updated<br></p>";
         header("Location: ".$_SERVER['REQUEST_URI']);
@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
 
     if($sub_surname != $info['lastname']){
         $sql = "update ".$user_db_name.".profile set lastname = '"
-            .$sub_surname."' where user_id = ".$_SESSION['user_id'];
+            .$sub_surname."' where user_id = ".$_COOKIE['user_id'];
         userQuery($sql);
         $sname_msg = "<p style='text-align: center; color: darkgreen'>Last name updated<br></p>";
         header("Location: ".$_SERVER['REQUEST_URI']);
